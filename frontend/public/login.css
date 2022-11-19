@@ -1,0 +1,11 @@
+.login__container{
+    position: absolute;
+    top:50%;
+    right: 25%;
+}
+
+#register__form{
+    border: 1px solid silver;
+    padding: 30px;
+    border-radius: 10px;
+}

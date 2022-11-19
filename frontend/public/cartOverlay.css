@@ -1,0 +1,36 @@
+#overlay__main__hero{
+    position: absolute;
+    top:80px;
+    right: 600px;
+    width: 100px;
+    height: 100px;
+    font-size: 10px;
+}
+
+.overlay__image{
+    width: 121px;
+    height: 190px;
+}
+
+.info__overlay{
+    width: 164px;
+height: 190px;
+}
+
+.overlay__color__box{
+    border:2px solid rgb(185, 182, 182);
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    padding-top: 8px;
+    margin-right: 10px;
+}
+
+.overlay__size__box{
+    border:1px solid black;
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    padding-top: 1px;
+    margin-right: 10px;
+}

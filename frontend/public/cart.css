@@ -1,0 +1,13 @@
+.main__cart__hero{
+    width: 93vw;
+    height: 80vh;
+    margin-left: 40px;
+}
+
+.cart__image{
+    width: 250px;
+}
+
+.cart__quantity{
+    text-align: center;
+}
