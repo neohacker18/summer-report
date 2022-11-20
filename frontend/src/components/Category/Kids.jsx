@@ -8,7 +8,7 @@ const Kids = () => {
     <div className="hero__container">
       <Heading>Category Name</Heading>
       <br />
-      <SimpleGrid columns={[2, null, 3]} spacing="40px">
+      <SimpleGrid columns={[1, 2, 3]} spacing="40px">
         <Box>
           <CategoryItem />
         </Box>

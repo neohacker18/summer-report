@@ -7,6 +7,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -18,8 +19,12 @@ const Login = () => {
       .then((res) => {
         if (res.data.redirectTo) {
           navigate(res.data.redirectTo);
+          console.log("User Logged In");
         }
-        console.log("User Logged In");
+        if(res.data.errorMessage)
+        {
+          setError(res.data.errorMessage)
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +36,7 @@ const Login = () => {
     >
       <form id="register__form" onSubmit={handleSubmit}>
         <Stack>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email {error && (<i style={{color:'red'}}>({error})</i>)}</label>
           <input
             type="email"
             id="email"

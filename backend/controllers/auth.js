@@ -13,30 +13,36 @@ exports.postLogin = (req, res, next) => {
   console.log("login called");
   const email = req.body.email;
   const password = req.body.password;
+  let errorMessage;
   User.findOne({ email: email })
     .then((user) => {
       if (!user) {
-        res.json({ error: "User does not exist with the given email id." });
+        errorMessage = "User does not exist with the given email id.";
       }
       const doMatch = password === user.password;
       if (doMatch) {
         console.log("password matched");
         res.json({ redirectTo: "/" });
       } else {
-        res.json({ error: "Invalid email or password." });
+        errorMessage = "Invalid email or password.";
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.json({dummy: 'dummy',errorMessage: errorMessage});
+      console.log(err);
+    });
 };
 
 exports.postSignup = (req, res, next) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
+  let errorMessage;
   User.findOne({ email: email })
     .then((userDoc) => {
       if (userDoc) {
-        throw new Error("User exists with the same id!");
+        errorMessage = "User found with the same id!";
+        throw new Error(errorMessage);
       } else {
         const user = new User({
           name: name,
@@ -49,9 +55,10 @@ exports.postSignup = (req, res, next) => {
       }
     })
     .then(() => {
-      res.json({redirectTo:"/login"})
+      res.json({ redirectTo: "/login", errorMessage: errorMessage });
     })
     .catch((err) => {
+      res.json({ errorMessage: errorMessage });
       console.log(err);
     });
 };

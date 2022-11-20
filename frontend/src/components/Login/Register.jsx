@@ -9,6 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
+  const [error,setError]=useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -22,10 +23,13 @@ const Register = () => {
         if (res.data.redirectTo) {
           navigate(res.data.redirectTo);
         }
-        console.log("Signup was successful!");
+        if(res.data.errorMessage){
+          navigate('/signup')
+          setError(res.data.errorMessage)
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(error)
       });
   };
   return (
@@ -47,7 +51,7 @@ const Register = () => {
         </Stack>
         <br />
         <Stack>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email {error && <i style={{color: 'red'}}>({error})</i>}</label>
           <input
             type="email"
             id="email"
