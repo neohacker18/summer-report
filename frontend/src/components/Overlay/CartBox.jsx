@@ -8,10 +8,12 @@ import '../../../public/cartOverlay.css'
 const CartItem = () => {
   return (
     <div className="info_overlay">
-      <p>Apollo</p>
-      <p>Running Short</p>
-      <p>$50.00</p>
-      <p>SIZE:</p>
+      <b>Apollo</b>
+      <p><i>Running Short</i></p>
+      <b style={{fontSize: '0.75rem'}}>$50.00</b>
+      <br />
+      <br />
+      <p><b style={{fontSize:'0.65rem'}}>SIZE:</b></p>
       <Flex>
         <Box className="overlay__size__box">XS</Box>
         <Box
@@ -23,7 +25,8 @@ const CartItem = () => {
         <Box className="overlay__size__box">M</Box>
         <Box className="overlay__size__box">L</Box>
       </Flex>
-      <h5 >COLOR:</h5>
+      <br />
+      <b style={{fontSize:'0.65rem'}}>COLOR:</b>
       <Flex>
         <Box className="overlay__color__box" style={{ backgroundColor: "grey" }}></Box>
         <Box className="overlay__color__box" style={{ backgroundColor: "black" }}></Box>

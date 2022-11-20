@@ -11,18 +11,22 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
+  size: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     required: true,
-  },
-  description: {
-    type: String,
   },
   imageUrl: {
     type: String,
     required: true,
   },
-  userId: {
+  description: {
+    type: String,
+  },
+  prodId: {
     type: Schema.Types.ObjectId,
     ref: "User",
     required: true,

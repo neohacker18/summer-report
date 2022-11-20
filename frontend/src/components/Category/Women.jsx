@@ -1,31 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../../public/category.css";
-import { Heading, SimpleGrid, Box } from "@chakra-ui/react";
+import { Button, Heading, SimpleGrid, Box } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
+import CartOverlay from "../Overlay/CartOverlay";
 
 const Women = () => {
+  const [showCartOverlay, setShowCartOverlay] = useState(false);
   return (
-    <div className="hero__container">
-      <Heading>Category Name</Heading>
-      <br />
-      <SimpleGrid columns={[2, null, 3]} spacing="40px">
-        <Box>
-          <CategoryItem />
-        </Box>
-        <Box>
-          <CategoryItem />
-        </Box>
-        <Box>
-          <CategoryItem />
-        </Box>
-        <Box>
-          <CategoryItem />
-        </Box>
-        <Box>
-          <CategoryItem />
-        </Box>
-      </SimpleGrid>
-    </div>
+    <>
+      <div className={`hero__container blur__background__${showCartOverlay}`}>
+        <Heading>Category Name</Heading>
+        <Button onClick={() => setShowCartOverlay(!showCartOverlay)}>
+          Click For Cart
+        </Button>
+        <br />
+        <br />
+        <SimpleGrid columns={[2, null, 3]} spacing="40px">
+          <Box>
+            <CategoryItem />
+          </Box>
+          <Box>
+            <CategoryItem />
+          </Box>
+          <Box>
+            <CategoryItem />
+          </Box>
+          <Box>
+            <CategoryItem />
+          </Box>
+          <Box>
+            <CategoryItem />
+          </Box>
+        </SimpleGrid>
+      </div>
+      {showCartOverlay && <CartOverlay />}
+    </>
   );
 };
 

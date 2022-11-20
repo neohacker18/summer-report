@@ -1,10 +1,22 @@
-#overlay__main__hero{
+/* #overlay__main__hero{
     position: absolute;
     top:80px;
     right: 600px;
     width: 100px;
     height: 100px;
     font-size: 10px;
+} */
+
+#overlay__main__hero{
+    position:fixed;
+    right: 0px;
+    top: 6vw;
+    width: 26vw;
+    height: 73vh;
+    font-size: 10px;
+    border: 1px solid black;
+    z-index: 100;
+    background-color: white;
 }
 
 .overlay__image{
