@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import ProductDisplayPage from "./components/ProductDisplayPage";
@@ -12,25 +12,46 @@ import Login from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import Error from "./components/Error";
 import { Routes, Route } from "react-router-loading";
+import { topbar } from "react-router-loading";
+import OverlayContext from "./context/OverlayContext";
 
 function App() {
-  const MyLoadingScreen=()=><div>Loading...</div>
-
+  const MyLoadingScreen = () => <div>loading</div>;
+  topbar.config({
+    autoRun: false,
+    barThickness: 7,
+    barColors: {
+      0: "rgba(26,  188, 156, .7)",
+      0.3: "rgba(41,  128, 185, .7)",
+      1.0: "rgba(231, 76,  60,  .7)",
+    },
+    shadowBlur: 5,
+    shadowColor: "green",
+    className: "topbar",
+  });
+  const [openCartOverlay, setOpenCartOverlay] = useState(false)
   return (
     <ChakraProvider>
       <BrowserRouter>
-        <Navbar />
+        <OverlayContext.Provider value={{openCartOverlay,setOpenCartOverlay}}>
+          <Navbar />
         <Routes loadingScreen={MyLoadingScreen} maxLoadingTime={350}>
           <Route exact path="/" element={<Women />} loading />
-          <Route exact path="/men" element={<Men />} />
-          <Route exact path="/kids" element={<Kids />} />
-          <Route exact path="/product" element={<ProductDisplayPage />} />
-          <Route exact path="/cart" element={<Cart />} />
-          <Route exact path="/overlay" element={<CartOverlay />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Register />} />
-          <Route exact path="*" element={<Error />} />
+          <Route exact path="/men" element={<Men />} loading />
+          <Route exact path="/kids" element={<Kids />} loading />
+          <Route
+            exact
+            path="/product"
+            element={<ProductDisplayPage />}
+            loading
+            />
+          <Route exact path="/cart" element={<Cart />} loading />
+          <Route exact path="/overlay" element={<CartOverlay />} loading />
+          <Route exact path="/login" element={<Login />} loading />
+          <Route exact path="/signup" element={<Register />} loading />
+          <Route exact path="*" element={<Error />} loading />
         </Routes>
+            </OverlayContext.Provider>
       </BrowserRouter>
     </ChakraProvider>
   );

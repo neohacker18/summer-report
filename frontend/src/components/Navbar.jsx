@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Stack,
   Heading,
   Flex,
   Text,
-  Button,
   useDisclosure,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -13,21 +12,19 @@ import ShoppingBagIcon from "../icons/ShoppingBag";
 import CartIcon from "../icons/CartIcon";
 import CurrencyIcon from "../icons/CurrencyIcon";
 import "../../public/navbar.css";
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import OverlayContext from "../context/OverlayContext";
+import CartOverlay from "./Overlay/CartOverlay";
 
 const Navbar = () => {
   const location = useLocation();
   console.log(location.pathname);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
-  const [women, setWomen] = useState(location === "/");
-  const [men, setMen] = useState(location === "/men");
-  const [kids, setKids] = useState(location === "kids");
-  // const handleMouseOut = (e) => {
-  //   if (location === "/") setWomen(true);
-  //   else if (location === "/men") setMen(true);
-  //   if (location === "/kids") setKids(true);
-  // };
+  const [women, setWomen] = useState(location.pathname === "/");
+  const [men, setMen] = useState(location.pathname === "/men");
+  const [kids, setKids] = useState(location.pathname === "kids");
+  const { openCartOverlay, setOpenCartOverlay } = useContext(OverlayContext);
   return (
     <Flex
       as="nav"
@@ -95,12 +92,15 @@ const Navbar = () => {
             <CurrencyIcon />
           </Link>
         </Box>
-        <Box>
-          <Link to="/cart">
-            <CartIcon />
-          </Link>
+        <Box
+          onClick={() => {
+            setOpenCartOverlay(!openCartOverlay);
+          }}
+        >
+          <CartIcon id="navbar__cartIcon" />
         </Box>
       </Flex>
+      {openCartOverlay && <CartOverlay />}
     </Flex>
   );
 };

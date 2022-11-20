@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import "../../../public/category.css";
-import { Button, Heading, SimpleGrid, Box } from "@chakra-ui/react";
+import {  Heading, SimpleGrid, Box } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
-import CartOverlay from "../Overlay/CartOverlay";
-import { useLoadingContext } from "react-router-loading";
+import OverlayContext from "../../context/OverlayContext";
 
 const Women = () => {
-  const loadingContext = useLoadingContext();
-  const [showCartOverlay, setShowCartOverlay] = useState(false);
+  const {openCartOverlay,setOpenCartOverlay} = useContext(OverlayContext)
   return (
     <>
-      <div className={`hero__container blur__background__${showCartOverlay}`}>
+      <div
+       className={`hero__container blur__background__${openCartOverlay}`}
+       >
         <Heading>Category Name</Heading>
-        <Button onClick={() => setShowCartOverlay(!showCartOverlay)}>
-          Click For Cart
-        </Button>
         <br />
         <br />
         <SimpleGrid columns={[2, null, 3]} spacing="40px">
@@ -35,7 +32,6 @@ const Women = () => {
           </Box>
         </SimpleGrid>
       </div>
-      {showCartOverlay && <CartOverlay />}
     </>
   );
 };

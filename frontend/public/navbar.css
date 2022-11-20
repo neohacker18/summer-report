@@ -1,13 +1,18 @@
 a:hover{
     color: rgb(87,226,128);
-    border-bottom: 1px solid rgb(87,226,128);
 }
 
 .header{
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .active__category__true{
     color: rgb(87,226,128);
-    border-bottom: 1px solid rgb(87,226,128);
+    border-bottom: 3px solid rgb(87,226,128);
+}
+
+#navbar__cartIcon:hover{
+    color: rgb(87,226,128);
+    cursor: pointer;
 }
