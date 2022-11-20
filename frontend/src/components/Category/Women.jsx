@@ -3,7 +3,7 @@ import "../../../public/category.css";
 import { Heading, SimpleGrid, Box } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
 
-const Home = () => {
+const Women = () => {
   return (
     <div className="hero__container">
       <Heading>Category Name</Heading>
@@ -29,4 +29,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Women;

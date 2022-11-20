@@ -1,30 +1,46 @@
-import React from "react";
-import {Stack, Flex, Box, Button } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Stack, Flex, Box, Button } from "@chakra-ui/react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("http://localhost:8000/login", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        if (res.data.redirectTo) {
+          navigate(res.data.redirectTo);
+        }
+        console.log("User Logged In");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
-    <div style={{ width: "50%", position: "absolute", top: "30vh", left: "25vw" }}>
-      <form id="register__form">
+    <div
+      style={{ width: "50%", position: "absolute", top: "30vh", left: "25vw" }}
+    >
+      <form id="register__form" onSubmit={handleSubmit}>
         <Stack>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              aria-describedby="nameHelp"
-              placeholder="Enter Name"
-            />
-        </Stack>
-        <br />
-        <Stack>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-            />
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </Stack>
         <br />
         <Stack>
@@ -34,12 +50,12 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="Enter password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </Stack>
         <br />
-        <Button type="submit" className="btn btn-success">
-          Register
-        </Button>
+        <Button type="submit">Login</Button>
       </form>
     </div>
   );

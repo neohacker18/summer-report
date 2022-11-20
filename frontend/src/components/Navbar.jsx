@@ -42,10 +42,10 @@ const Navbar = () => {
         <Link to="/" className="gender__links default__active__category">
           <Text style={{ marginLeft: "20px", width: "97px" }}>WOMEN</Text>
         </Link>
-        <Link to="/" className="gender__links">
+        <Link to="/men" className="gender__links">
           <Text style={{ width: "97px" }}>MEN</Text>
         </Link>
-        <Link href="/" className="gender__links">
+        <Link href="/kids" className="gender__links">
           <Text style={{ width: "97px" }}>KIDS</Text>
         </Link>
       </Stack>
