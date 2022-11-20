@@ -3,8 +3,10 @@ import "../../../public/category.css";
 import { Button, Heading, SimpleGrid, Box } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
 import CartOverlay from "../Overlay/CartOverlay";
+import { useLoadingContext } from "react-router-loading";
 
 const Women = () => {
+  const loadingContext = useLoadingContext();
   const [showCartOverlay, setShowCartOverlay] = useState(false);
   return (
     <>
