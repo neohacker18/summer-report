@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../../public/category.css";
-import { Heading, SimpleGrid, Box } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Box, Wrap, WrapItem } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
 const Men = () => {
@@ -23,25 +23,25 @@ const Men = () => {
   if (isLoading) {
     return <div>Loading....</div>;
   }
-  //  filter data u are getting from mongodb to reduce load using filter to filter out category and pagination
   return (
     <div className="hero__container">
       <Heading>Kids Clothes</Heading>
       <br />
-      <SimpleGrid columns={[2, null, 3]} spacing="40px">
-      <Box>
-          {products && products.map((product,index) => {
-          return  <CategoryItem
-            key={index}
-            brand={product.brand}
-            imageUrl={product.imageUrl}
-            title={product.title}
-            price={product.price}
-            id= {product._id}
-            />;
+      <Wrap>
+        {products &&
+          products.map((product, index) => {
+            return (
+              <CategoryItem
+                key={index}
+                brand={product.brand}
+                imageUrl={product.imageUrl}
+                title={product.title}
+                price={product.price}
+                id={product._id}
+              />
+            );
           })}
-        </Box>
-      </SimpleGrid>
+      </Wrap>
     </div>
   );
 };

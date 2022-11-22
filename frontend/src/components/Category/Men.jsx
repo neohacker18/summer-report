@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "../../../public/category.css";
-import { Heading, SimpleGrid, Box } from "@chakra-ui/react";
+import {
+  Heading,
+  SimpleGrid,
+  Box,
+  Wrap,
+  WrapItem,
+  Center,
+} from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";
 const Men = () => {
@@ -28,20 +35,21 @@ const Men = () => {
     <div className="hero__container">
       <Heading>Men's Clothes</Heading>
       <br />
-      <SimpleGrid columns={[2, null, 3]} spacing="40px">
-      <Box>
-          {products && products.map((product,index) => {
-          return  <CategoryItem
-            key={index}
-            brand={product.brand}
-            imageUrl={product.imageUrl}
-            title={product.title}
-            price={product.price}
-            id= {product._id}
-            />;
+      <Wrap>
+        {products &&
+          products.map((product, index) => {
+            return (
+              <CategoryItem
+                key={index}
+                brand={product.brand}
+                imageUrl={product.imageUrl}
+                title={product.title}
+                price={product.price}
+                id={product._id}
+              />
+            );
           })}
-        </Box>
-      </SimpleGrid>
+      </Wrap>
     </div>
   );
 };
