@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Stack, Flex, Box, Button } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useToast } from "@chakra-ui/react";
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const toast = useToast();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -17,26 +18,40 @@ const Login = () => {
         password: password,
       })
       .then((res) => {
+        let title, description;
         if (res.data.redirectTo) {
           navigate(res.data.redirectTo);
           console.log("User Logged In");
+          title = "Success";
+          description = "Logged In";
         }
-        if(res.data.errorMessage)
-        {
-          setError(res.data.errorMessage)
+        if (res.data.errorMessage) {
+          title = "Error";
+          description = "Something went wrong";
+          setError(res.data.errorMessage);
         }
+        toast({
+          title: title,
+          description: description,
+          status: `${title === `Error` ? `error` : `success`}`,
+          duration: 4000,
+          isClosable: true,
+        });
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
   return (
     <div
       style={{ width: "50%", position: "absolute", top: "30vh", left: "25vw" }}
     >
       <form id="register__form" onSubmit={handleSubmit}>
         <Stack>
-          <label htmlFor="email">Email {error && (<i style={{color:'red'}}>({error})</i>)}</label>
+          <label htmlFor="email">
+            Email {error && <i style={{ color: "red" }}>({error})</i>}
+          </label>
           <input
             type="email"
             id="email"
@@ -60,7 +75,9 @@ const Login = () => {
           />
         </Stack>
         <br />
-        <Button type="submit">Login</Button>
+        <Button type="submit" bg={"green.200"}>
+          Login
+        </Button>
       </form>
     </div>
   );

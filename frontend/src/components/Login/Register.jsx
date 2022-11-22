@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Stack, Button } from "@chakra-ui/react";
+import { Stack, Button, useToast } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,9 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const toast = useToast();
   const navigate = useNavigate();
-  const [error,setError]=useState(null);
+  const [error, setError] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -20,18 +21,31 @@ const Register = () => {
         password: password,
       })
       .then((res) => {
+        let title, description;
         if (res.data.redirectTo) {
           navigate(res.data.redirectTo);
+          console.log("User Logged In");
+          title = "Success";
+          description = "Logged In";
         }
-        if(res.data.errorMessage){
-          navigate('/signup')
-          setError(res.data.errorMessage)
+        if (res.data.errorMessage) {
+          title = "Error";
+          description = "Something went wrong";
+          setError(res.data.errorMessage);
         }
+        toast({
+          title: title,
+          description: description,
+          status: `${title === `Error` ? `error` : `success`}`,
+          duration: 4000,
+          isClosable: true,
+        });
       })
       .catch((err) => {
-        console.log(error)
+        console.log(err);
       });
   };
+
   return (
     <div
       style={{ width: "50%", position: "absolute", top: "30vh", left: "25vw" }}
@@ -51,7 +65,9 @@ const Register = () => {
         </Stack>
         <br />
         <Stack>
-          <label htmlFor="email">Email {error && <i style={{color: 'red'}}>({error})</i>}</label>
+          <label htmlFor="email">
+            Email {error && <i style={{ color: "red" }}>({error})</i>}
+          </label>
           <input
             type="email"
             id="email"
@@ -64,7 +80,12 @@ const Register = () => {
         </Stack>
         <br />
         <Stack>
-          <label htmlFor="password">Password {password.length>=5 || <i style={{color:'red'}}>(Atleast 5 characters long)</i>}</label>
+          <label htmlFor="password">
+            Password{" "}
+            {password.length >= 5 || (
+              <i style={{ color: "red" }}>(Atleast 5 characters long)</i>
+            )}
+          </label>
           <input
             type="password"
             id="password"
@@ -88,7 +109,7 @@ const Register = () => {
         </Stack>
         <br />
         <Button
-          disabled={password.length<5 || confirmPassword !== password}
+          disabled={password.length < 5 || confirmPassword !== password}
           type="submit"
           bg={"green.200"}
           onClick={() => {

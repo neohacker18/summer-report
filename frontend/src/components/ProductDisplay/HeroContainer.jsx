@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "../../../public/productDisplay.css";
 import {
   Box,
@@ -9,18 +9,14 @@ import {
   Button,
   useDisclosure,
 } from "@chakra-ui/react";
-import Sweater from '../../img/sweater.jpeg'
+import Sweater from "../../img/sweater.jpeg";
 
 const HeroContainer = () => {
   return (
-    <>
-        <Flex>
-        <Flex className="hero__image">
-            <img src={Sweater} alt="yo" />
-        </Flex>
-      </Flex>
-    </>
-  )
-}
+    <Box style={{ width: "350px", height: "390px" }}>
+      <img src={Sweater} alt="img"/>
+    </Box>
+  );
+};
 
-export default HeroContainer
+export default HeroContainer;

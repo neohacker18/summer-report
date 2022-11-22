@@ -16,7 +16,9 @@ import {
   Button,
   Spacer,
   DrawerCloseButton,
+  Divider,
 } from "@chakra-ui/react";
+
 import RightCartBox from "./Overlay/RightCartBox";
 import CartBox from "./Overlay/CartBox";
 import { HamburgerIcon } from "@chakra-ui/icons";
@@ -98,9 +100,7 @@ const Navbar = () => {
       </Flex>
       <Flex mr={5} mx={10}>
         <Box style={{ marginRight: "20px" }}>
-          <Link to="/">
-            <CurrencyIcon />
-          </Link>
+          <CurrencyIcon/>
         </Box>
         <Box
           onClick={() => {
@@ -135,6 +135,7 @@ const Navbar = () => {
                 <RightCartBox />
               </Box>
             </Flex>
+            <Divider/>
             <Flex my={10}>
               <Box p="2">
                 <CartBox style={{ borderBottom: "1px solid grey" }} />
