@@ -14,9 +14,10 @@ import Error from "./components/Error";
 import { Routes, Route } from "react-router-loading";
 import { topbar } from "react-router-loading";
 import OverlayContext from "./context/OverlayContext";
+import LoadingScreen from "./components/Loader/LoadingScreen";
 
 function App() {
-  const MyLoadingScreen = () => <div>loading</div>;
+  const MyLoadingScreen = () => <LoadingScreen/>;
   topbar.config({
     autoRun: false,
     barThickness: 7,

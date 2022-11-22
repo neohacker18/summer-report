@@ -18,7 +18,6 @@ import CartOverlay from "./Overlay/CartOverlay";
 
 const Navbar = () => {
   const location = useLocation();
-  console.log(location.pathname);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
   const [women, setWomen] = useState(location.pathname === "/");

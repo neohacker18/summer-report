@@ -11,13 +11,14 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const authRoutes = require("./routes/auth");
 
-app.use(
-  cors({
-    origin: "http://127.0.0.1:5173",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://127.0.0.1:5173",
+//     credentials: true,
+//   })
+// );
 app.use(express.json());
+app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: false }));

@@ -1,5 +1,4 @@
 const Product = require("../models/product");
-const mongoDB = require("mongodb");
 
 exports.postAddProduct = (req, res, next) => {
   const brand = req.body.brand;
