@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
   brand: {
-    type:String,
+    type: String,
     required: true,
   },
   title: {
@@ -25,12 +25,17 @@ const productSchema = new Schema({
   },
   description: {
     type: String,
-  },
-  prodId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
     required: true,
   },
+  category: {
+    type: String,
+    required: true,
+  },
+  // prodId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "User",
+  //   required: true,
+  // },
 });
 
 module.exports = mongoose.model("Product", productSchema);

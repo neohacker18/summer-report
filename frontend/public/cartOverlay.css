@@ -17,6 +17,7 @@
     border: 1px solid black;
     z-index: 10000000;
     background-color: white;
+    text-align:left;
 }
 
 .overlay__image{
