@@ -7,7 +7,7 @@ const RightCartBox = () => {
   return (
     <div>
       <Flex>
-        <Box p="4">
+        <Box p="2">
           <Stack>
             <Box>
               <Button onClick={()=>setCount(count+1)}>+</Button>

@@ -7,7 +7,7 @@ import '../../../public/cartOverlay.css'
 
 const CartItem = () => {
   return (
-    <div className="info_overlay">
+    <div >
       <b>Apollo</b>
       <p><i>Running Short</i></p>
       <b style={{fontSize: '0.75rem'}}>$50.00</b>

@@ -6,7 +6,19 @@ import {
   Flex,
   Text,
   useDisclosure,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  Input,
+  Button,
+  Spacer,
+  DrawerCloseButton,
 } from "@chakra-ui/react";
+import RightCartBox from "./Overlay/RightCartBox";
+import CartBox from "./Overlay/CartBox";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import ShoppingBagIcon from "../icons/ShoppingBag";
 import CartIcon from "../icons/CartIcon";
@@ -14,7 +26,6 @@ import CurrencyIcon from "../icons/CurrencyIcon";
 import "../../public/navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import OverlayContext from "../context/OverlayContext";
-import CartOverlay from "./Overlay/CartOverlay";
 
 const Navbar = () => {
   const location = useLocation();
@@ -99,7 +110,61 @@ const Navbar = () => {
           <CartIcon id="navbar__cartIcon" />
         </Box>
       </Flex>
-      {openCartOverlay && <CartOverlay />}
+      <Drawer
+        placement="right"
+        isOpen={openCartOverlay}
+        isClose={openCartOverlay}
+        size={"sm"}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <DrawerCloseButton
+            onClick={() => {
+              setOpenCartOverlay(!openCartOverlay);
+            }}
+          />
+          <DrawerHeader>My Cart, 3 items</DrawerHeader>
+
+          <DrawerBody>
+            <Flex>
+              <Box p="2">
+                <CartBox style={{ borderBottom: "1px solid grey" }} />
+              </Box>
+              <Spacer />
+              <Box p="2">
+                <RightCartBox />
+              </Box>
+            </Flex>
+            <Flex my={10}>
+              <Box p="2">
+                <CartBox style={{ borderBottom: "1px solid grey" }} />
+              </Box>
+              <Spacer />
+              <Box p="2">
+                <RightCartBox />
+              </Box>
+            </Flex>
+          </DrawerBody>
+
+          <DrawerFooter>
+            <Stack mx={120}>
+              <Link to="/cart">
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    setOpenCartOverlay(!openCartOverlay);
+                  }}
+                >
+                  View Cart
+                </Button>
+              </Link>
+              <Button size="lg" bg={"teal.200"}>
+                Checkout
+              </Button>
+            </Stack>
+          </DrawerFooter>
+        </DrawerContent>
+      </Drawer>
     </Flex>
   );
 };
