@@ -25,13 +25,6 @@ const CartItem = () => {
         <Box className="overlay__size__box">M</Box>
         <Box className="overlay__size__box">L</Box>
       </Flex>
-      <br />
-      <b style={{fontSize:'0.65rem'}}>COLOR:</b>
-      <Flex>
-        <Box className="overlay__color__box" style={{ backgroundColor: "grey" }}></Box>
-        <Box className="overlay__color__box" style={{ backgroundColor: "black" }}></Box>
-        <Box className="overlay__color__box" style={{ backgroundColor: "green" }}></Box>
-      </Flex>
     </div>
   );
 };

@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  Box,
-  Stack,
-  Heading,
-  Flex,
-  Text,
-  Button,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Flex, Button, useToast } from "@chakra-ui/react";
 
 const ProductInformation = (props) => {
+  const toast = useToast();
   const brand = props.brand;
   const title = props.title;
   const size = props.size;
@@ -21,12 +14,15 @@ const ProductInformation = (props) => {
       <h5 id="product_description">{title}</h5>
       <h5 className="box__type__tag">SIZE:</h5>
       <Flex>
-        <Box className="size__box"
-        style={{
-          backgroundColor: `${size === "XS" ? `black` : `white`}`,
-          color: `${size === "XS" ? `white` : ` black`}`,
-        }}
-        >XS</Box>
+        <Box
+          className="size__box"
+          style={{
+            backgroundColor: `${size === "XS" ? `black` : `white`}`,
+            color: `${size === "XS" ? `white` : ` black`}`,
+          }}
+        >
+          XS
+        </Box>
         <Box
           className="size__box"
           style={{
@@ -36,24 +32,54 @@ const ProductInformation = (props) => {
         >
           S
         </Box>
-        <Box className="size__box" style={{
+        <Box
+          className="size__box"
+          style={{
             backgroundColor: `${size === "M" ? `black` : `white`}`,
             color: `${size === "M" ? `white` : ` black`}`,
-          }}>M</Box>
-        <Box className="size__box"
-        style={{
+          }}
+        >
+          M
+        </Box>
+        <Box
+          className="size__box"
+          style={{
             backgroundColor: `${size === "L" ? `black` : `white`}`,
             color: `${size === "L" ? `white` : ` black`}`,
-          }}>L</Box>
-        <Box className="size__box"
-        style={{
+          }}
+        >
+          L
+        </Box>
+        <Box
+          className="size__box"
+          style={{
             backgroundColor: `${size === "XL" ? `black` : `white`}`,
             color: `${size === "XL" ? `white` : ` black`}`,
-          }}>XL</Box>
+          }}
+        >
+          XL
+        </Box>
       </Flex>
+      <br />
       <h5 className="box__type__tag">PRICE:</h5>
       <h5 className="box__type__tag">${price}</h5>
-      <button id="add_to_cart">ADD TO CART</button>
+      <br />
+      <Button
+        size={"lg"}
+        bg={"green.300"}
+        onClick={() => {
+          console.log("clicked");
+          toast({
+            description: "Item added to cart!",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+          });
+        }}
+      >
+        ADD TO CART
+      </Button>
+      <br />
       <p>{description}</p>
     </div>
   );

@@ -26,16 +26,14 @@ import ShoppingBagIcon from "../icons/ShoppingBag";
 import CartIcon from "../icons/CartIcon";
 import CurrencyIcon from "../icons/CurrencyIcon";
 import "../../public/navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import OverlayContext from "../context/OverlayContext";
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
-  const [women, setWomen] = useState(location.pathname === "/");
-  const [men, setMen] = useState(location.pathname === "/men");
-  const [kids, setKids] = useState(location.pathname === "kids");
   const { openCartOverlay, setOpenCartOverlay } = useContext(OverlayContext);
   return (
     <Flex
@@ -59,34 +57,25 @@ const Navbar = () => {
       >
         <Link
           to="/"
-          className={`gender__links active__category__${women}`}
-          onMouseOver={() => {
-            setWomen(true);
-            setMen(false);
-            setKids(false);
-          }}
+          className={`gender__links active__category__${
+            location.pathname === "/"
+          }`}
         >
-          <Text style={{ marginLeft: "20px", width: "97px" }}>WOMEN</Text>
+          <Text style={{ width: "97px" }}>WOMEN</Text>
         </Link>
         <Link
           to="/men"
-          className={`gender__links active__category__${men}`}
-          onMouseOver={() => {
-            setMen(true);
-            setWomen(false);
-            setKids(false);
-          }}
+          className={`gender__links active__category__${
+            location.pathname === "/men"
+          }`}
         >
           <Text style={{ width: "97px" }}>MEN</Text>
         </Link>
         <Link
           to="/kids"
-          className={`gender__links active__category__${kids}`}
-          onMouseOver={() => {
-            setKids(true);
-            setWomen(false);
-            setMen(false);
-          }}
+          className={`gender__links active__category__${
+            location.pathname === "/kids"
+          }`}
         >
           <Text style={{ width: "97px" }}>KIDS</Text>
         </Link>
@@ -100,7 +89,7 @@ const Navbar = () => {
       </Flex>
       <Flex mr={5} mx={10}>
         <Box style={{ marginRight: "20px" }}>
-          <CurrencyIcon/>
+          <CurrencyIcon />
         </Box>
         <Box
           onClick={() => {
@@ -135,7 +124,7 @@ const Navbar = () => {
                 <RightCartBox />
               </Box>
             </Flex>
-            <Divider/>
+            <Divider />
             <Flex my={10}>
               <Box p="2">
                 <CartBox style={{ borderBottom: "1px solid grey" }} />
@@ -149,16 +138,15 @@ const Navbar = () => {
 
           <DrawerFooter>
             <Stack mx={120}>
-              <Link to="/cart">
-                <Button
-                  size="lg"
-                  onClick={() => {
-                    setOpenCartOverlay(!openCartOverlay);
-                  }}
-                >
-                  View Cart
-                </Button>
-              </Link>
+              <Button
+                size="lg"
+                onClick={() => {
+                  navigate("/cart");
+                  setOpenCartOverlay(!openCartOverlay);
+                }}
+              >
+                View Cart
+              </Button>
               <Button size="lg" bg={"teal.200"}>
                 Checkout
               </Button>

@@ -80,14 +80,3 @@
     padding-top: 8px;
     margin-right: 10px;
 }
-
-#add_to_cart{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px 32px;
-    background-color: #5ECE7B ;
-    color: white;
-    width: 292px;
-    height: 52px;
-}
