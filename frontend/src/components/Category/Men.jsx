@@ -45,6 +45,8 @@ const Men = () => {
                 imageUrl={product.imageUrl}
                 title={product.title}
                 price={product.price}
+                size={product.size}
+                description={product.description}
                 id={product._id}
               />
             );

@@ -4,9 +4,8 @@ import {
   Heading,
   SimpleGrid,
   Box,
-  Flex,
-  WrapItem,
   Wrap,
+  WrapItem,
   Center,
 } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
@@ -31,6 +30,7 @@ const Men = () => {
   if (isLoading) {
     return <div>Loading....</div>;
   }
+  //  filter data u are getting from mongodb to reduce load using filter to filter out category and pagination
   return (
     <div className="hero__container">
       <Heading>Women's Clothes</Heading>
@@ -45,6 +45,8 @@ const Men = () => {
                 imageUrl={product.imageUrl}
                 title={product.title}
                 price={product.price}
+                size={product.size}
+                description={product.description}
                 id={product._id}
               />
             );

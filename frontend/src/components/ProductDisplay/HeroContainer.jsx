@@ -11,10 +11,10 @@ import {
 } from "@chakra-ui/react";
 import Sweater from "../../img/sweater.jpeg";
 
-const HeroContainer = () => {
+const HeroContainer = ({imageUrl}) => {
   return (
     <Box style={{ width: "350px", height: "390px" }}>
-      <img src={Sweater} alt="img"/>
+      <img src={imageUrl} alt="img"/>
     </Box>
   );
 };

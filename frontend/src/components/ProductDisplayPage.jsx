@@ -5,52 +5,43 @@ import { Wrap, WrapItem, Center } from "@chakra-ui/react";
 import Sweater from "../img/sweater.jpeg";
 import HeroContainer from "./ProductDisplay/HeroContainer";
 import ProductInformation from "./ProductDisplay/ProductInformation";
-import axios from "axios";
+import { useLocation } from "react-router-dom";
 
-const ProductDisplayPage = (props) => {
+const ProductDisplayPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [product, setProduct] = useState();
-  const url = `http://localhost:8000/products/prodId=${props.prodId}`;
 
-  useEffect(() => {
-    axios
-      .get(url)
-      .then((result) => {
-        setProduct(result.data.product);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  if(isLoading){
-    return <div>Loading...</div>
-  }
-
+  const {state} = useLocation();
+  const {data} = state;
+  const brand = data.brand;
+  const title = data.title;
+  const description = data.description;
+  const imageUrl = data.imageUrl;
+  const size = data.size;
+  const price = data.price;
   return (
     <SimpleGrid columns={2} spacing="40px">
       <Box>
-        <Grid my={20} mx={10} templateColumns='repeat(2, 1fr)'>
+        <Grid my={20} mx={10} templateColumns="repeat(2, 1fr)">
           <GridItem>
             <SimpleGrid rows={3} mx={10} spacingY={10}>
               <Box style={{ width: "100px", height: "100px" }}>
                 <img
-                  src={Sweater}
+                  src={imageUrl}
                   alt=""
                   style={{ width: "100px", height: "100px" }}
                 />
               </Box>
               <Box style={{ width: "100px", height: "100px" }}>
                 <img
-                  src={Sweater}
+                  src={imageUrl}
                   alt=""
                   style={{ width: "100px", height: "100px" }}
                 />
               </Box>
               <Box style={{ width: "100px", height: "100px" }}>
                 <img
-                  src={Sweater}
+                  src={imageUrl}
                   alt=""
                   style={{ width: "100px", height: "100px" }}
                 />
@@ -58,12 +49,12 @@ const ProductDisplayPage = (props) => {
             </SimpleGrid>
           </GridItem>
           <GridItem>
-            <HeroContainer />
+            <HeroContainer imageUrl={imageUrl}/>
           </GridItem>
         </Grid>
       </Box>
       <Box className="product__information">
-        <ProductInformation />
+        <ProductInformation brand={brand} title={title} size={size} price={price} description={description}/>
       </Box>
     </SimpleGrid>
   );
