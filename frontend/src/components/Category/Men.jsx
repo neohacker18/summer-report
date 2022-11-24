@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../../public/category.css";
 import {
   Heading,
-  SimpleGrid,
-  Box,
   Wrap,
-  WrapItem,
-  Center,
 } from "@chakra-ui/react";
 import CategoryItem from "./CategoryItem";
 import axios from "axios";

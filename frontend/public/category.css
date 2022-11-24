@@ -36,6 +36,7 @@
 
 .blur__product__card__true{
     opacity: 0.5;
+    height: 10px;
 }
 
 .category__productCard{
@@ -47,4 +48,12 @@
 
 .card__overlay__blur__true{
     opacity: 0.3;
+}
+
+.onHoverProductFlex__true img{
+    height: 288px;
+}
+.onHoverProductFlex__true{
+    z-index: 10000;
+    background: black;
 }
