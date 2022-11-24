@@ -10,10 +10,6 @@ const ImageBox = () => {
     <div>
       <Box p="4" className="cart__image">
         <img src={Sweater} alt="" />
-        <Flex>
-          <Button my={2}>{char1}</Button>
-          <Button my={2} mx={5}>{char2}</Button>
-        </Flex>
       </Box>
     </div>
   );

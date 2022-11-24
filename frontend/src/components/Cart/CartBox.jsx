@@ -28,12 +28,6 @@ const CartItem = () => {
         <Box className="size__box">M</Box>
         <Box className="size__box">L</Box>
       </Flex>
-      <h5 className="box__type__tag">COLOR:</h5>
-      <Flex>
-        <Box className="color__box" style={{ backgroundColor: "grey" }}></Box>
-        <Box className="color__box" style={{ backgroundColor: "black" }}></Box>
-        <Box className="color__box" style={{ backgroundColor: "green" }}></Box>
-      </Flex>
     </div>
   );
 };

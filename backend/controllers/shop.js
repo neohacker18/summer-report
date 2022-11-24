@@ -13,7 +13,7 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProduct = (req, res, next) => {
-  console.log(req.params)
+  console.log(req.params);
   Product.findById(prodId)
     .then((product) => {
       res.json({
@@ -27,4 +27,42 @@ exports.getProduct = (req, res, next) => {
         errorMessage: err,
       });
     });
+};
+
+exports.getCart = (req, res, next) => {
+  req.user
+    .populate("cart.items.productId")
+    .then((user) => {
+      const products = user.cart.items;
+      res.json({
+        products: products,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+exports.postCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  Product.findById(prodId)
+    .then((product) => {
+      return req.user.addToCart(product);
+    })
+    .then((result) => {
+      console.log(result);
+      //basically reload the page
+      res.json({ redirectTo: "/cart" });
+    });
+};
+
+exports.postCartDeleteProduct = (req, res, next) => {
+  const prodId = req.body.productId;
+  req.user
+    .removeFromCart(prodId)
+    .then((result) => {
+      //basically reload the page
+      res.json({ redirectTo: "/cart" });
+    })
+    .catch((err) => console.log(err));
 };
