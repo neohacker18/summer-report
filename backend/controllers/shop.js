@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const User = require("../models/user");
 
 exports.getProducts = (req, res, next) => {
   const category = req.params.category.split("=")[1];
@@ -30,12 +31,13 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-  req.user
-    .populate("cart.items.productId")
+  console.log(req.params.id);
+  const userId = req.params.id.split('=')[1];
+  User.findById(userId)
     .then((user) => {
-      const products = user.cart.items;
-      res.json({
-        products: products,
+      user.populate("cart.items.productId").then((user) => {
+        const products = user.cart.items;
+        res.json({ products: products });
       });
     })
     .catch((err) => {

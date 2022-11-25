@@ -139,7 +139,8 @@ const Navbar = () => {
         <Box mx={4} onClick={()=>{
             console.log('yo')
             setUser(null);
-            localStorage.deleteItem('isLoggedIn')
+            localStorage.setItem('isLoggedIn',false);
+            localStorage.setItem('userId',null);
           }}>
           <LogoutIcon />
         </Box>

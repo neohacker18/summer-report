@@ -33,7 +33,7 @@ function App() {
     className: "topbar",
   });
   const [openCartOverlay, setOpenCartOverlay] = useState(false);
-  const [user, setUser] = useState(localStorage.getItem('isLoggedIn'));
+  const [user, setUser] = useState(localStorage.getItem("isLoggedIn"));
   return (
     <ChakraProvider>
       <BrowserRouter>
@@ -43,17 +43,66 @@ function App() {
           <AuthContext.Provider value={{ user, setUser }}>
             <Navbar />
             <Routes loadingScreen={MyLoadingScreen} maxLoadingTime={350}>
-              <Route exact path="/" element={<PrivateRoute><Women /></PrivateRoute>} loading />
-              <Route exact path="/men" element={<PrivateRoute><Men /></PrivateRoute>} loading />
-              <Route exact path="/kids" element={<PrivateRoute><Kids /></PrivateRoute>} loading />
+              <Route
+                exact
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Women />
+                  </PrivateRoute>
+                }
+                loading
+              />
+              <Route
+                exact
+                path="/men"
+                element={
+                  <PrivateRoute>
+                    <Men />
+                  </PrivateRoute>
+                }
+                loading
+              />
+              <Route
+                exact
+                path="/kids"
+                element={
+                  <PrivateRoute>
+                    <Kids />
+                  </PrivateRoute>
+                }
+                loading
+              />
               <Route
                 exact
                 path="/product"
-                element={<ProductDisplayPage />}
+                element={
+                  <PrivateRoute>
+                    <ProductDisplayPage />
+                  </PrivateRoute>
+                }
                 loading
               />
-              <Route exact path="/cart" element={<Cart />} loading />
-              <Route exact path="/overlay" element={<CartOverlay />} loading />
+              <Route
+                exact
+                path="/cart"
+                element={
+                  <PrivateRoute>
+                    <Cart />
+                  </PrivateRoute>
+                }
+                loading
+              />
+              <Route
+                exact
+                path="/overlay"
+                element={
+                  <PrivateRoute>
+                    <CartOverlay />
+                  </PrivateRoute>
+                }
+                loading
+              />
               <Route exact path="/login" element={<Login />} loading />
               <Route exact path="/signup" element={<Register />} loading />
               <Route exact path="*" element={<Error />} loading />

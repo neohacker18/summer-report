@@ -28,6 +28,7 @@ const Login = () => {
           const user = res.data.user;
           setUser(user);
           localStorage.setItem('isLoggedIn',true);
+          localStorage.setItem('userId',user._id);
           title = "Success";
           description = "Logged In";
         }
