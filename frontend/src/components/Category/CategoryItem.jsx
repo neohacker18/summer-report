@@ -12,6 +12,7 @@ const CategoryItem = (props) => {
     navigate("/product", {
       state: {
         data: props,
+        productId: props.id
       },
     });
   };

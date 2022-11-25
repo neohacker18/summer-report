@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Flex, Button, useToast } from "@chakra-ui/react";
+import axios from "axios";
 
 const ProductInformation = (props) => {
   const toast = useToast();
@@ -8,6 +9,30 @@ const ProductInformation = (props) => {
   const size = props.size;
   const price = props.price;
   const description = props.description;
+  const productId = props.productId;
+  const handleSubmit = (e) => {
+    console.log("clicked");
+    toast({
+      description: "Item added to cart!",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    });
+
+    const url = "http://localhost:8000/cart";
+    const userId = localStorage.getItem("userId");
+    axios
+      .post(url, {
+        productId: productId,
+        userId: userId,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <h1 id="product_title">{brand}</h1>
@@ -64,20 +89,8 @@ const ProductInformation = (props) => {
       <h5 className="box__type__tag">PRICE:</h5>
       <h5 className="box__type__tag">${price}</h5>
       <br />
-      <Button
-        size={"lg"}
-        bg={"green.300"}
-        onClick={() => {
-          console.log("clicked");
-          toast({
-            description: "Item added to cart!",
-            status: "success",
-            duration: 4000,
-            isClosable: true,
-          });
-        }}
-      >
-        ADD TO CART
+      <Button size={"lg"} bg={"green.300"} onClick={handleSubmit}>
+        Add to cart
       </Button>
       <br />
       {/* <p>{description}</p> */}

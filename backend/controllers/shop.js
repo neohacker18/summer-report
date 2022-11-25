@@ -32,7 +32,7 @@ exports.getProduct = (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
   console.log(req.params.id);
-  const userId = req.params.id.split('=')[1];
+  const userId = req.params.id.split("=")[1];
   User.findById(userId)
     .then((user) => {
       user.populate("cart.items.productId").then((user) => {
@@ -46,16 +46,18 @@ exports.getCart = (req, res, next) => {
 };
 
 exports.postCart = (req, res, next) => {
+  const userId = req.body.userId;
   const prodId = req.body.productId;
-  Product.findById(prodId)
-    .then((product) => {
-      return req.user.addToCart(product);
+  User.findById(userId)
+    .then((user) => {
+      Product.findById(prodId)
+        .then((product) => {
+          console.log(product);
+          user.addToCart(product);
+        })
+        .catch((err) => console.log(err));
     })
-    .then((result) => {
-      console.log(result);
-      //basically reload the page
-      res.json({ redirectTo: "/cart" });
-    });
+    .catch((err) => console.log(err));
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {

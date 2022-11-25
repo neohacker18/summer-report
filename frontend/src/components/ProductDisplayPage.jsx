@@ -12,7 +12,7 @@ const ProductDisplayPage = () => {
   const [product, setProduct] = useState();
 
   const {state} = useLocation();
-  const {data} = state;
+  const {data,productId} = state;
   const brand = data.brand;
   const title = data.title;
   const description = data.description;
@@ -54,7 +54,7 @@ const ProductDisplayPage = () => {
         </Grid>
       </Box>
       <Box className="product__information">
-        <ProductInformation brand={brand} title={title} size={size} price={price} description={description}/>
+        <ProductInformation brand={brand} title={title} size={size} price={price} description={description} productId={productId}/>
       </Box>
     </SimpleGrid>
   );
