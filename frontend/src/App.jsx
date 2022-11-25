@@ -15,9 +15,11 @@ import { Routes, Route } from "react-router-loading";
 import { topbar } from "react-router-loading";
 import OverlayContext from "./context/OverlayContext";
 import LoadingScreen from "./components/Loader/LoadingScreen";
+import AuthContext from "./context/AuthContext";
+import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
 
 function App() {
-  const MyLoadingScreen = () => <LoadingScreen/>;
+  const MyLoadingScreen = () => <LoadingScreen />;
   topbar.config({
     autoRun: false,
     barThickness: 7,
@@ -30,29 +32,34 @@ function App() {
     shadowColor: "green",
     className: "topbar",
   });
-  const [openCartOverlay, setOpenCartOverlay] = useState(false)
+  const [openCartOverlay, setOpenCartOverlay] = useState(false);
+  const [user, setUser] = useState(localStorage.getItem('isLoggedIn'));
   return (
     <ChakraProvider>
       <BrowserRouter>
-        <OverlayContext.Provider value={{openCartOverlay,setOpenCartOverlay}}>
-          <Navbar />
-        <Routes loadingScreen={MyLoadingScreen} maxLoadingTime={350}>
-          <Route exact path="/" element={<Women />} loading />
-          <Route exact path="/men" element={<Men />} loading />
-          <Route exact path="/kids" element={<Kids />} loading />
-          <Route
-            exact
-            path="/product"
-            element={<ProductDisplayPage />}
-            loading
-            />
-          <Route exact path="/cart" element={<Cart />} loading />
-          <Route exact path="/overlay" element={<CartOverlay />} loading />
-          <Route exact path="/login" element={<Login />} loading />
-          <Route exact path="/signup" element={<Register />} loading />
-          <Route exact path="*" element={<Error />} loading />
-        </Routes>
-            </OverlayContext.Provider>
+        <OverlayContext.Provider
+          value={{ openCartOverlay, setOpenCartOverlay }}
+        >
+          <AuthContext.Provider value={{ user, setUser }}>
+            <Navbar />
+            <Routes loadingScreen={MyLoadingScreen} maxLoadingTime={350}>
+              <Route exact path="/" element={<PrivateRoute><Women /></PrivateRoute>} loading />
+              <Route exact path="/men" element={<PrivateRoute><Men /></PrivateRoute>} loading />
+              <Route exact path="/kids" element={<PrivateRoute><Kids /></PrivateRoute>} loading />
+              <Route
+                exact
+                path="/product"
+                element={<ProductDisplayPage />}
+                loading
+              />
+              <Route exact path="/cart" element={<Cart />} loading />
+              <Route exact path="/overlay" element={<CartOverlay />} loading />
+              <Route exact path="/login" element={<Login />} loading />
+              <Route exact path="/signup" element={<Register />} loading />
+              <Route exact path="*" element={<Error />} loading />
+            </Routes>
+          </AuthContext.Provider>
+        </OverlayContext.Provider>
       </BrowserRouter>
     </ChakraProvider>
   );

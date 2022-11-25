@@ -80,7 +80,7 @@ const ProductInformation = (props) => {
         ADD TO CART
       </Button>
       <br />
-      <p>{description}</p>
+      {/* <p>{description}</p> */}
     </div>
   );
 };

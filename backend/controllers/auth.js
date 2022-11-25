@@ -10,7 +10,6 @@ exports.getLogin = (req, res, next) => {
 };
 
 exports.postLogin = (req, res, next) => {
-  console.log("login called");
   const email = req.body.email;
   const password = req.body.password;
   let errorMessage;
@@ -22,13 +21,14 @@ exports.postLogin = (req, res, next) => {
       const doMatch = password === user.password;
       if (doMatch) {
         console.log("password matched");
-        res.json({ redirectTo: "/" });
+        res.json({ redirectTo: "/", user: user });
       } else {
         errorMessage = "Invalid email or password.";
+        res.json({ dummy: "dummy", errorMessage: errorMessage });
       }
     })
     .catch((err) => {
-      res.json({dummy: 'dummy',errorMessage: errorMessage});
+      res.json({ dummy: "dummy", errorMessage: errorMessage });
       console.log(err);
     });
 };

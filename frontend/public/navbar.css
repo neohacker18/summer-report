@@ -12,6 +12,7 @@ a:hover{
     border-bottom: 3px solid rgb(87,226,128);
 }
 
+
 #navbar__cartIcon:hover{
     color: rgb(87,226,128);
     cursor: pointer;

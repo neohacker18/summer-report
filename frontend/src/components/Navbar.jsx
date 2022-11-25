@@ -28,6 +28,8 @@ import CurrencyIcon from "../icons/CurrencyIcon";
 import "../../public/navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import OverlayContext from "../context/OverlayContext";
+import AuthContext from "../context/AuthContext";
+import LogoutIcon from "../icons/LogoutIcon";
 
 const Navbar = () => {
   const location = useLocation();
@@ -35,6 +37,42 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
   const { openCartOverlay, setOpenCartOverlay } = useContext(OverlayContext);
+  const { user ,setUser} = useContext(AuthContext);
+  if (!user) {
+    return (
+      <Flex
+        as="nav"
+        align="center"
+        justify="space-between"
+        wrap="wrap"
+        padding={6}
+        className="header"
+      >
+        <Stack
+          direction={{ base: "column", md: "row" }}
+          display={{ base: isOpen ? "block" : "none", md: "flex" }}
+          width={{ base: "full", md: "auto" }}
+          alignItems="center"
+          flexGrow={1}
+          mt={{ base: 4, md: 0 }}
+        >
+        </Stack>
+          <Link to="/login" style={{position: 'absolute',right:'10px'}} >
+            <Button style={{ width: "97px" }} variant={'outline'} colorScheme={'black'}>Login</Button>
+          </Link>
+          <Link to="/signup"  style={{position: 'absolute',right:'120px'}}>
+            <Button style={{ width: "97px" }} colorScheme={'green'}>Signup</Button>
+          </Link>
+        <Flex mr={5} style={{ position: "absolute", right: "50%" }}>
+          <Heading as="h1" size="lg">
+            <Link to="/">
+              <ShoppingBagIcon />
+            </Link>
+          </Heading>
+        </Flex>
+      </Flex>
+    );
+  }
   return (
     <Flex
       as="nav"
@@ -88,15 +126,22 @@ const Navbar = () => {
         </Heading>
       </Flex>
       <Flex mr={5} mx={10}>
-        <Box style={{ marginRight: "20px" }}>
+        <Box mx={3}>
           <CurrencyIcon />
         </Box>
-        <Box
+        <Box my={-0.8}
           onClick={() => {
             setOpenCartOverlay(!openCartOverlay);
           }}
         >
-          <CartIcon id="navbar__cartIcon" />
+          <CartIcon id="navbar__cartIcon"/>
+        </Box>
+        <Box mx={4} onClick={()=>{
+            console.log('yo')
+            setUser(null);
+            localStorage.deleteItem('isLoggedIn')
+          }}>
+          <LogoutIcon />
         </Box>
       </Flex>
       <Drawer
