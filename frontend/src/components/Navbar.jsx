@@ -37,7 +37,7 @@ const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
   const { openCartOverlay, setOpenCartOverlay } = useContext(OverlayContext);
-  const { user ,setUser} = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   if (!user) {
     return (
       <Flex
@@ -55,14 +55,21 @@ const Navbar = () => {
           alignItems="center"
           flexGrow={1}
           mt={{ base: 4, md: 0 }}
-        >
-        </Stack>
-          <Link to="/login" style={{position: 'absolute',right:'10px'}} >
-            <Button style={{ width: "97px" }} variant={'outline'} colorScheme={'black'}>Login</Button>
-          </Link>
-          <Link to="/signup"  style={{position: 'absolute',right:'120px'}}>
-            <Button style={{ width: "97px" }} colorScheme={'green'}>Signup</Button>
-          </Link>
+        ></Stack>
+        <Link to="/login" style={{ position: "absolute", right: "10px" }}>
+          <Button
+            style={{ width: "97px" }}
+            variant={"outline"}
+            colorScheme={"black"}
+          >
+            Login
+          </Button>
+        </Link>
+        <Link to="/signup" style={{ position: "absolute", right: "120px" }}>
+          <Button style={{ width: "97px" }} colorScheme={"green"}>
+            Signup
+          </Button>
+        </Link>
         <Flex mr={5} style={{ position: "absolute", right: "50%" }}>
           <Heading as="h1" size="lg">
             <Link to="/">
@@ -129,19 +136,23 @@ const Navbar = () => {
         <Box mx={3}>
           <CurrencyIcon />
         </Box>
-        <Box my={-0.8}
+        <Box
+          my={-0.8}
           onClick={() => {
             setOpenCartOverlay(!openCartOverlay);
           }}
         >
-          <CartIcon id="navbar__cartIcon"/>
+          <CartIcon id="navbar__cartIcon" />
         </Box>
-        <Box mx={4} onClick={()=>{
-            console.log('yo')
+        <Box
+          mx={4}
+          onClick={() => {
+            console.log("yo");
             setUser(null);
-            localStorage.setItem('isLoggedIn',false);
-            localStorage.setItem('userId',null);
-          }}>
+            localStorage.setItem("isLoggedIn", false);
+            localStorage.setItem("userId", null);
+          }}
+        >
           <LogoutIcon />
         </Box>
       </Flex>
@@ -160,7 +171,7 @@ const Navbar = () => {
           />
           <DrawerHeader>My Cart, 3 items</DrawerHeader>
           <DrawerBody>
-            <CartBox/>
+            <CartBox />
             <Divider />
           </DrawerBody>
 
@@ -175,7 +186,11 @@ const Navbar = () => {
               >
                 View Cart
               </Button>
-              <Button size="lg" bg={"teal.200"}>
+              <Button
+                size="lg"
+                bg={"teal.200"}
+                onClick={() => navigate("/checkout")}
+              >
                 Checkout
               </Button>
             </Stack>

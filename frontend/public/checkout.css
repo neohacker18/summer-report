@@ -1,0 +1,59 @@
+
+.checkout__left{
+    background-color: #fff;
+}
+.checkout__right{
+    background-color: rgb(250,233,229);
+    align-items: center;
+    position: relative;
+}
+.checkout__right hr{
+    position: absolute;
+    top:80px;
+    right: 20%;
+    background-color: black;
+    width: 62%;
+    height: 7px;
+}
+
+.checkout__total{
+    position: absolute;
+    top: 180px;
+    right:28%;
+    flex-direction: column;
+}
+
+.checkbox__flex{
+    position: absolute;
+    top: 300px;
+    right:25%;
+    flex-direction: column;
+}
+
+.checkout__button{
+    color: white;
+}
+
+.checkout__button:hover{
+    color: black;
+}
+.checkoutButtonClass{
+    position: absolute;
+    top: 400px;
+    right: 35%;
+}
+
+.checkout__Boxes{
+    position: relative;
+    /* border: 1px solid black; */
+}
+
+.prod__price{
+    padding: 0px 45px;
+}
+.prod__qty{
+    padding: 0px 40px;
+}
+.prod__total{
+    padding-left: 120px;
+}

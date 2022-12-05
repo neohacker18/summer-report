@@ -6,11 +6,13 @@ import { Flex, Box, Spacer, Button } from "@chakra-ui/react";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
 import CartProduct from "./CartProduct";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate()
   const { user } = useContext(AuthContext);
-  const userId = localStorage.getItem('userId');
-  const url = `http://localhost:8000/cart/id=${userId}`;
+  // const userId = localStorage.getItem('userId');
+  const url = `http://localhost:8000/cart/id=${user}`;
   const [products,setProducts] = useState();
   useEffect(() => {
     axios
@@ -51,6 +53,7 @@ const Cart = () => {
           </h5>
           <br />
           <Button
+          onClick={()=>navigate('/checkout')}
             style={{
               backgroundColor: "rgb(87,226,128)",
               color: "white",

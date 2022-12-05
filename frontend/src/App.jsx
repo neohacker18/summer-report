@@ -17,6 +17,7 @@ import OverlayContext from "./context/OverlayContext";
 import LoadingScreen from "./components/Loader/LoadingScreen";
 import AuthContext from "./context/AuthContext";
 import PrivateRoute from "./components/ProtectedRoutes/PrivateRoute";
+import CheckoutHero from "./components/Checkout/CheckoutHero";
 
 function App() {
   const MyLoadingScreen = () => <LoadingScreen />;
@@ -105,6 +106,7 @@ function App() {
               />
               <Route exact path="/login" element={<Login />} loading />
               <Route exact path="/signup" element={<Register />} loading />
+              <Route exact path="/checkout" element={<CheckoutHero />} loading />
               <Route exact path="*" element={<Error />} loading />
             </Routes>
           </AuthContext.Provider>
