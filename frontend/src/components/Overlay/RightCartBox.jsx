@@ -2,8 +2,8 @@ import React,{useState} from "react";
 import { Flex, Box, Spacer, Stack, Button } from "@chakra-ui/react";
 import ImageBox from "./ImageBox";
 
-const RightCartBox = () => {
-    const [count, setCount] = useState(1)
+const RightCartBox = ({imageUrl,quantity}) => {
+    const [count, setCount] = useState(quantity)
   return (
     <div>
       <Flex>
@@ -21,7 +21,7 @@ const RightCartBox = () => {
           </Stack>
         </Box>
         <Spacer />
-        <ImageBox/>
+        <ImageBox imageUrl={imageUrl}/>
       </Flex>
     </div>
   );

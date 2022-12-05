@@ -159,27 +159,9 @@ const Navbar = () => {
             }}
           />
           <DrawerHeader>My Cart, 3 items</DrawerHeader>
-
           <DrawerBody>
-            <Flex>
-              <Box p="2">
-                <CartBox style={{ borderBottom: "1px solid grey" }} />
-              </Box>
-              <Spacer />
-              <Box p="2">
-                <RightCartBox />
-              </Box>
-            </Flex>
+            <CartBox/>
             <Divider />
-            <Flex my={10}>
-              <Box p="2">
-                <CartBox style={{ borderBottom: "1px solid grey" }} />
-              </Box>
-              <Spacer />
-              <Box p="2">
-                <RightCartBox />
-              </Box>
-            </Flex>
           </DrawerBody>
 
           <DrawerFooter>

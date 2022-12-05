@@ -33,7 +33,7 @@ function App() {
     className: "topbar",
   });
   const [openCartOverlay, setOpenCartOverlay] = useState(false);
-  const [user, setUser] = useState(localStorage.getItem("isLoggedIn"));
+  const [user, setUser] = useState(localStorage.getItem("userId"));
   return (
     <ChakraProvider>
       <BrowserRouter>
