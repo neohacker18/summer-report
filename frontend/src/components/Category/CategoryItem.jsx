@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { Flex, Center, WrapItem, Button, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CategoryItem = (props) => {
   const toast = useToast();
@@ -12,9 +13,31 @@ const CategoryItem = (props) => {
     navigate("/product", {
       state: {
         data: props,
-        productId: props.id
+        productId: props.id,
       },
     });
+  };
+  const handleCart = () => {
+    toast({
+      description: "Item added to cart!",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    });
+
+    const url = "http://localhost:8000/cart";
+    const userId = localStorage.getItem("userId");
+    axios
+      .post(url, {
+        productId: props.id,
+        userId: userId,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <WrapItem
@@ -41,19 +64,7 @@ const CategoryItem = (props) => {
             direction={"column"}
             className={`onHoverBottomFlex__${showCartButton}`}
           >
-            <Button
-              onClick={() => {
-                console.log("clicked");
-                toast({
-                  description: "Item added to cart!",
-                  status: "success",
-                  duration: 4000,
-                  isClosable: true,
-                });
-              }}
-            >
-              Add To Cart
-            </Button>
+            <Button onClick={handleCart}>Add To Cart</Button>
             <h5>
               <b>Size Available:</b> {size}
             </h5>

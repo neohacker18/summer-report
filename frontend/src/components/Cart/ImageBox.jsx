@@ -3,13 +3,12 @@ import { Flex, Box, Spacer, Stack, Button, VStack } from "@chakra-ui/react";
 import Sweater from "../../img/sweater.jpeg";
 import "../../../public/cart.css";
 
-const ImageBox = () => {
-  const char1 = "<";
-  const char2 = ">";
+const ImageBox = ({imageUrl}) => {
+  console.log(imageUrl)
   return (
     <div>
       <Box p="4" className="cart__image">
-        <img src={Sweater} alt="" />
+        <img src={imageUrl} alt="123" />
       </Box>
     </div>
   );

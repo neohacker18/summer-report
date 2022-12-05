@@ -1,21 +1,22 @@
-import React, { useContext, useEffect } from "react";
+import React, {useState, useContext, useEffect } from "react";
 import "../../../public/cart.css";
 import CartBox from "./CartBox";
 import RightCartBox from "./RightCartBox";
 import { Flex, Box, Spacer, Button } from "@chakra-ui/react";
 import AuthContext from "../../context/AuthContext";
 import axios from "axios";
+import CartProduct from "./CartProduct";
 
 const Cart = () => {
   const { user } = useContext(AuthContext);
   const userId = localStorage.getItem('userId');
-  console.log(userId);
   const url = `http://localhost:8000/cart/id=${userId}`;
+  const [products,setProducts] = useState();
   useEffect(() => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res);
+        setProducts(res.data.products);
       })
       .catch((err) => {
         console.log(err);
@@ -32,24 +33,11 @@ const Cart = () => {
         </h1>
       </b>
       <hr />
-      <Flex>
-        <Box p="4">
-          <CartBox style={{ borderBottom: "1px solid grey" }} />
-        </Box>
-        <Spacer />
-        <Box p="4">
-          <RightCartBox />
-        </Box>
-      </Flex>
-      <Flex>
-        <Box p="4">
-          <CartBox style={{ borderBottom: "1px solid grey" }} />
-        </Box>
-        <Spacer />
-        <Box p="4">
-          <RightCartBox />
-        </Box>
-      </Flex>
+      {products && products.map((product,id)=>{
+        return(
+          <CartProduct key={id} product={product}/>
+        )
+      })}
       <Flex>
         <Box p="4">
           <h5>
