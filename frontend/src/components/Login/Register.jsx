@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Stack, Button, useToast } from "@chakra-ui/react";
+import { Stack, Button, useToast, Flex } from "@chakra-ui/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../../../public/login.css";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -23,7 +24,7 @@ const Register = () => {
       .then((res) => {
         let title, description;
         if (res.data.redirectTo) {
-          navigate('/');
+          navigate("/");
           title = "Success";
           description = "Sign Up Successful!";
         }
@@ -46,11 +47,9 @@ const Register = () => {
   };
 
   return (
-    <div
-      style={{ width: "50%", position: "absolute", top: "30vh", left: "25vw" }}
-    >
-      <form id="register__form" onSubmit={handleSubmit}>
-        <Stack>
+    <Flex className="registerHero">
+      <form onSubmit={handleSubmit}>
+        <Stack className="fieldBox">
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -63,7 +62,7 @@ const Register = () => {
           />
         </Stack>
         <br />
-        <Stack>
+        <Stack className="fieldBox">
           <label htmlFor="email">
             Email {error && <i style={{ color: "red" }}>({error})</i>}
           </label>
@@ -78,7 +77,7 @@ const Register = () => {
           />
         </Stack>
         <br />
-        <Stack>
+        <Stack className="fieldBox">
           <label htmlFor="password">
             Password{" "}
             {password.length >= 5 || (
@@ -95,7 +94,7 @@ const Register = () => {
           />
         </Stack>
         <br />
-        <Stack>
+        <Stack className="fieldBox">
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             type="password"
@@ -108,9 +107,9 @@ const Register = () => {
         </Stack>
         <br />
         <Button
+          id="loginButton"
           disabled={password.length < 5 || confirmPassword !== password}
           type="submit"
-          bg={"green.200"}
           onClick={() => {
             setName(document.getElementById("name").value);
             setEmail(document.getElementById("email").value);
@@ -126,7 +125,7 @@ const Register = () => {
           <p style={{ color: "red" }}>Passwords do not match</p>
         )}
       </form>
-    </div>
+    </Flex>
   );
 };
 

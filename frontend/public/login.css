@@ -12,9 +12,10 @@
     top: 35vh;
 }
 
-#register__form{
-    padding: 30px;
-    border-radius: 10px;
+.registerHero{
+    position: absolute;
+    left: 40vw;
+    top: 30vh;
 }
 
 #loginButton{
