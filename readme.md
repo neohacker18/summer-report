@@ -2,6 +2,8 @@
 
 <ul>
     <li>Frontend using ReactJS</li>
+    <li>React Context api for state management</li>
+    <li>React Router Dom for Routing</li>
     <li>Backend using NodeJS (Express)</li>
     <li>Database - MongoDB (Mongoose)</li>
     <li>Component Library - Chakra UI</li>

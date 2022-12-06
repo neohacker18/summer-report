@@ -23,6 +23,7 @@ const CartItem = () => {
     <>
       {products &&
         products.map((product, id) => {
+          const prodId = product.productId._id;
           const prod = product.productId;
           const size = prod.size;
           return (
@@ -91,39 +92,10 @@ const CartItem = () => {
                 <RightCartBox
                   imageUrl={prod.imageUrl}
                   quantity={product.quantity}
+                  prodId = {prodId}
                 />
               </Box>
             </Flex>
-            // <Flex key={id}>
-            //   <Box p="2">
-            //       <b>{prod.brand}</b>
-            //       <p>
-            //         <i>{prod.title}</i>
-            //       </p>
-            //       <br />
-            //       <br />
-            //       <p>
-            //         <b style={{ fontSize: "0.65rem" }}>SIZE:</b>
-            //       </p>
-            //       <Flex>
-            //         <Box
-            //           className="size__box"
-            //           style={{
-            //             backgroundColor: `black`,
-            //             color: `white`,
-            //           }}
-            //         >
-            //           {size}
-            //         </Box>
-            //       </Flex>
-            //       <Box p="2">
-            //         <RightCartBox
-            //           imageUrl={prod.imageUrl}
-            //           quantity={product.quantity}
-            //         />
-            //       </Box>
-            //   </Box>
-            // </Flex>
           );
         })}
     </>

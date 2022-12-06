@@ -38,6 +38,7 @@ const Navbar = () => {
   const handleToggle = () => (isOpen ? onClose() : onOpen());
   const { openCartOverlay, setOpenCartOverlay } = useContext(OverlayContext);
   const { user, setUser } = useContext(AuthContext);
+  console.log(user)
   if (!user) {
     return (
       <Flex

@@ -48,12 +48,18 @@ exports.getCart = (req, res, next) => {
 exports.postCart = (req, res, next) => {
   const userId = req.body.userId;
   const prodId = req.body.productId;
+  const option = req.body.option;
+  console.log(prodId)
   User.findById(userId)
     .then((user) => {
       Product.findById(prodId)
         .then((product) => {
           console.log(product);
-          user.addToCart(product);
+          if (option === "Add") {
+            user.addToCart(product);
+          } else {
+            user.reduceFromCart(product);
+          }
         })
         .catch((err) => console.log(err));
     })
@@ -61,12 +67,16 @@ exports.postCart = (req, res, next) => {
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
+  const userId = req.body.userId;
   const prodId = req.body.productId;
-  req.user
-    .removeFromCart(prodId)
-    .then((result) => {
-      //basically reload the page
-      res.json({ redirectTo: "/cart" });
+  User.findById(userId)
+    .then((user) => {
+      user
+        .removeFromCart(prodId)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
     })
     .catch((err) => console.log(err));
 };

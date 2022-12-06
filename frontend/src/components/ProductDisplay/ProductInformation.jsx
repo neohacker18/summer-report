@@ -8,10 +8,11 @@ const ProductInformation = (props) => {
   const title = props.title;
   const size = props.size;
   const price = props.price;
-  const description = props.description;
+  // const description = props.description;
   const productId = props.productId;
+  console.log(productId)
+  console.log(props)
   const handleSubmit = (e) => {
-    console.log("clicked");
     toast({
       description: "Item added to cart!",
       status: "success",
@@ -25,6 +26,7 @@ const ProductInformation = (props) => {
       .post(url, {
         productId: productId,
         userId: userId,
+        option: "Add",
       })
       .then((res) => {
         console.log(res);
@@ -87,13 +89,18 @@ const ProductInformation = (props) => {
       </Flex>
       <br />
       <h5 className="box__type__tag">PRICE:</h5>
-      <h5 className="box__type__tag">${price}</h5>
+      <h5 className="box__type__tag">$ {price}</h5>
       <br />
-      <Button size={"lg"} bg={"green.300"} onClick={handleSubmit}>
+      <Button
+        size={"lg"}
+        bg={"green.300"}
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
         Add to cart
       </Button>
       <br />
-      {/* <p>{description}</p> */}
     </div>
   );
 };

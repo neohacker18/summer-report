@@ -31,6 +31,7 @@ const CategoryItem = (props) => {
       .post(url, {
         productId: props.id,
         userId: userId,
+        option: "Add",
       })
       .then((res) => {
         console.log(res);

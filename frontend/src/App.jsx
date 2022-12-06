@@ -104,9 +104,18 @@ function App() {
                 }
                 loading
               />
+              <Route
+                exact
+                path="/checkout"
+                element={
+                  <PrivateRoute>
+                    <CheckoutHero />
+                  </PrivateRoute>
+                }
+                loading
+              />
               <Route exact path="/login" element={<Login />} loading />
               <Route exact path="/signup" element={<Register />} loading />
-              <Route exact path="/checkout" element={<CheckoutHero />} loading />
               <Route exact path="*" element={<Error />} loading />
             </Routes>
           </AuthContext.Provider>
