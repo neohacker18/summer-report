@@ -42,7 +42,7 @@ const Cart = () => {
       })}
       <Flex>
         <Box p="4">
-          <h5>
+          {/* <h5>
             Tax 21%: <b>$42.00</b>
           </h5>
           <h5>
@@ -50,15 +50,16 @@ const Cart = () => {
           </h5>
           <h5>
             Total: <b>$200.00</b>
-          </h5>
+          </h5> */}
           <br />
           <Button
           onClick={()=>navigate('/checkout')}
             style={{
-              backgroundColor: "rgb(87,226,128)",
+              background: '#5ECE7B',
               color: "white",
-              width: "200px",
-              borderRadius: "0px",
+              width: "279px",
+              height:'43px',
+              padding: '16px 32px'
             }}
           >
             Order

@@ -67,6 +67,7 @@ const RightCartBox = ({ product }) => {
           <Stack>
             <Box>
               <Button
+              variant={'outline'}
                 onClick={() => {
                   handleAdd();
                 }}
@@ -80,6 +81,7 @@ const RightCartBox = ({ product }) => {
             {count > 0 && (
               <Box>
                 <Button
+              variant={'outline'}
                   onClick={() => {
                     if (count == 1) {
                       handleRemove();

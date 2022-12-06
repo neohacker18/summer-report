@@ -15,7 +15,6 @@ const CartProduct = ({ product }) => {
         <RightCartBox product={product}/>
       </Box>
     </Flex>
-    <br />
     <hr />
     </>
   );

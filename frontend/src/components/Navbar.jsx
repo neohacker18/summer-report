@@ -135,7 +135,7 @@ const Navbar = () => {
       </Flex>
       <Flex mr={5} mx={10}>
         <Box mx={3}>
-          <CurrencyIcon />
+          {/* <CurrencyIcon /> */}
         </Box>
         <Box
           my={-0.8}
@@ -189,7 +189,8 @@ const Navbar = () => {
               </Button>
               <Button
                 size="lg"
-                bg={"teal.200"}
+                style={{backgroundColor:"#5ECE7B"}}
+                color="white"
                 onClick={() => navigate("/checkout")}
               >
                 Checkout

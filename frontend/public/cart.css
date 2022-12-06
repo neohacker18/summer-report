@@ -4,8 +4,9 @@
     margin-left: 40px;
 }
 
-.cart__image{
-    width: 250px;
+.cart__image img{
+    width: 200px;
+    height: 200px;
 }
 
 .cart__quantity{
