@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import AuthContext from "../../context/AuthContext";
+import '../../../public/login.css'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -51,11 +52,9 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{ width: "50%", position: "absolute", top: "30vh", left: "25vw" }}
-    >
+    <Flex className="loginHero">
       <form id="register__form" onSubmit={handleSubmit}>
-        <Stack>
+        <Stack className="fieldBox">
           <label htmlFor="email">
             Email {error && <i style={{ color: "red" }}>({error})</i>}
           </label>
@@ -64,29 +63,27 @@ const Login = () => {
             id="email"
             name="email"
             aria-describedby="emailHelp"
-            placeholder="Enter email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </Stack>
         <br />
-        <Stack>
+        <Stack className="fieldBox">
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             name="password"
-            placeholder="Enter password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </Stack>
         <br />
-        <Button type="submit" bg={"green.200"}>
+        <Button type="submit" id="loginButton">
           Login
         </Button>
       </form>
-    </div>
+    </Flex>
   );
 };
 

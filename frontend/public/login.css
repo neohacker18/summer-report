@@ -4,8 +4,33 @@
     right: 25%;
 }
 
+.loginHero{
+    position: absolute;
+    width: 300px;
+    height: 398px;
+    left: 40vw;
+    top: 35vh;
+}
+
 #register__form{
-    border: 1px solid silver;
     padding: 30px;
     border-radius: 10px;
+}
+
+#loginButton{
+    width: 300px;
+    height: 45px;
+    background: #9aec98;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.fieldBox{
+    width: 300px;
+    height: 45px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
 }
