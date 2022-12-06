@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Flex, Button, useToast } from "@chakra-ui/react";
+import { Box, Flex, Button, useToast, Text } from "@chakra-ui/react";
 import axios from "axios";
+import "../../../public/productDisplay.css";
 
 const ProductInformation = (props) => {
   const toast = useToast();
@@ -10,8 +11,6 @@ const ProductInformation = (props) => {
   const price = props.price;
   // const description = props.description;
   const productId = props.productId;
-  console.log(productId)
-  console.log(props)
   const handleSubmit = (e) => {
     toast({
       description: "Item added to cart!",
@@ -36,10 +35,13 @@ const ProductInformation = (props) => {
       });
   };
   return (
-    <div>
-      <h1 id="product_title">{brand}</h1>
-      <h5 id="product_description">{title}</h5>
-      <h5 className="box__type__tag">SIZE:</h5>
+    <Flex direction={"column"}>
+      <h1 id="productBrand">{brand}</h1>
+      <br />
+      <h5 id="productTitle">{title}</h5>
+      <br />
+      <br />
+      <h5 id="productSizeTag">SIZE:</h5>
       <Flex>
         <Box
           className="size__box"
@@ -88,20 +90,18 @@ const ProductInformation = (props) => {
         </Box>
       </Flex>
       <br />
-      <h5 className="box__type__tag">PRICE:</h5>
-      <h5 className="box__type__tag">$ {price}</h5>
+      <h5 id="productSizeTag">PRICE:</h5>
+      <h5 id="priceTag">$ {price}</h5>
       <br />
-      <Button
-        size={"lg"}
-        bg={"green.300"}
+      <Button id="productAddToCartButton" color={'white'}
         onClick={() => {
           handleSubmit();
         }}
       >
-        Add to cart
+        <h1>Add to cart</h1>
       </Button>
       <br />
-    </div>
+    </Flex>
   );
 };
 
