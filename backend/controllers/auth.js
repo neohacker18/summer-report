@@ -18,14 +18,16 @@ exports.postLogin = (req, res, next) => {
       if (!user) {
         errorMessage = "User does not exist with the given email id.";
       }
-      const doMatch = password === user.password;
-      if (doMatch) {
-        console.log("password matched");
-        res.json({ redirectTo: "/", user: user });
-      } else {
-        errorMessage = "Invalid email or password.";
-        res.json({ dummy: "dummy", errorMessage: errorMessage });
-      }
+      bcrypt.compare(password, user.password).then((result) => {
+        const doMatch = result;
+        if (doMatch) {
+          console.log("password matched");
+          res.json({ redirectTo: "/", user: user });
+        } else {
+          errorMessage = "Invalid email or password.";
+          res.json({ dummy: "dummy", errorMessage: errorMessage });
+        }
+      });
     })
     .catch((err) => {
       res.json({ dummy: "dummy", errorMessage: errorMessage });
@@ -33,32 +35,37 @@ exports.postLogin = (req, res, next) => {
     });
 };
 
-exports.postSignup = (req, res, next) => {
+exports.postSignup = async (req, res, next) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
+  let securePassword = password;
   let errorMessage;
-  User.findOne({ email: email })
-    .then((userDoc) => {
-      if (userDoc) {
-        errorMessage = "User found with the same id!";
-        throw new Error(errorMessage);
-      } else {
-        const user = new User({
-          name: name,
-          email: email,
-          password: password,
-          cart: { items: [] },
+  await bcrypt.hash(password, 10, (err, hash) => {
+    if (!err) {
+      User.findOne({ email: email })
+        .then((userDoc) => {
+          if (userDoc) {
+            errorMessage = "User found with the same id!";
+            throw new Error(errorMessage);
+          } else {
+            const user = new User({
+              name: name,
+              email: email,
+              password: hash,
+              cart: { items: [] },
+            });
+            console.log("User created");
+            return user.save();
+          }
+        })
+        .then(() => {
+          res.json({ redirectTo: "/login", errorMessage: errorMessage });
+        })
+        .catch((err) => {
+          res.json({ errorMessage: errorMessage });
+          console.log(err);
         });
-        console.log("User created");
-        return user.save();
-      }
-    })
-    .then(() => {
-      res.json({ redirectTo: "/login", errorMessage: errorMessage });
-    })
-    .catch((err) => {
-      res.json({ errorMessage: errorMessage });
-      console.log(err);
-    });
+    }
+  });
 };
