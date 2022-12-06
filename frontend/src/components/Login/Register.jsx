@@ -23,10 +23,9 @@ const Register = () => {
       .then((res) => {
         let title, description;
         if (res.data.redirectTo) {
-          navigate(res.data.redirectTo);
-          console.log("User Logged In");
+          navigate('/');
           title = "Success";
-          description = "Logged In";
+          description = "Sign Up Successful!";
         }
         if (res.data.errorMessage) {
           title = "Error";

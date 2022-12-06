@@ -30,7 +30,7 @@ const Login = () => {
           localStorage.setItem('isLoggedIn',true);
           localStorage.setItem('userId',user._id);
           title = "Success";
-          description = "Logged In";
+          description = `Welcome Back, ${user.name} !`;
         }
         if (res.data.errorMessage) {
           title = "Error";

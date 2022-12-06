@@ -170,7 +170,7 @@ const Navbar = () => {
               setOpenCartOverlay(!openCartOverlay);
             }}
           />
-          <DrawerHeader>My Cart, 3 items</DrawerHeader>
+          <DrawerHeader>My Cart</DrawerHeader>
           <DrawerBody>
             <CartBox />
             <Divider />
