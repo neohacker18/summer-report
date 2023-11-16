@@ -28,6 +28,7 @@ const Login = () => {
           navigate(res.data.redirectTo);
           const user = res.data.user;
           setUser(user);
+          console.log(user)
           localStorage.setItem('isLoggedIn',true);
           localStorage.setItem('userId',user._id);
           title = "Success";

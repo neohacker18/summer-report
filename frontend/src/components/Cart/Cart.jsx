@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const navigate = useNavigate()
   const { user } = useContext(AuthContext);
+  
   // const userId = localStorage.getItem('userId');
   const url = `http://localhost:8000/cart/id=${user}`;
   const [products,setProducts] = useState();
@@ -18,6 +19,8 @@ const Cart = () => {
     axios
       .get(url)
       .then((res) => {
+        console.log(res);
+        console.log(res.data.products)
         setProducts(res.data.products);
       })
       .catch((err) => {

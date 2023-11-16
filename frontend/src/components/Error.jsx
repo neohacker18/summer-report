@@ -1,9 +1,10 @@
 import React from 'react'
-import axios from 'axios'
+import {Flex} from '@chakra-ui/react'
 
 const Error = () => {
   return (
-    <div>Error</div>
+    <Flex 
+    style={{width: '500px',height:'200px',fontSize:'2.9rem',position:'absolute',top:'40vh',left:'32vw'} }>OOPS! Page Not Found.</Flex>
   )
 }
 
